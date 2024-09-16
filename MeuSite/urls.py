@@ -23,6 +23,8 @@ from django.contrib.auth.views import LogoutView
 from django.urls.base import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.views import PasswordChangeDoneView
+from django.views.generic.edit import UpdateView
+from django.contrib.auth.models import User
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -31,10 +33,11 @@ urlpatterns = [
     path('', views.home, name='homepage'),
     path('seguranca/', views.homeSec, name='sec-home'),
     path('seguranca/registro/', views.registro, name='sec-registro'),
-    path('seguranca/login/', LoginView.as_view(template_name='seguranca/login.html',), name='sec-login'),
+    path('seguranca/login/', LoginView.as_view(template_name='seguranca/form.html', extra_context={'titulo':'Login', 'cabecalho':'Página de Login', 'texto_btn': 'Login'}), name='sec-login'),
     path('seguranca/profile/', views.paginaSecreta, name='sec-paginaSecreta'),
     path('meulogout/', views.logout, name='sec-meulogout'),
     path('logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home'),), name='sec-logout'),
-    path('seguranca/password_change/', PasswordChangeView.as_view(template_name='seguranca/password_change_form.html', success_url=reverse_lazy('sec-password_change_done'),), name='sec-password_change'),
+    path('seguranca/password_change/', PasswordChangeView.as_view(template_name='seguranca/form.html', success_url=reverse_lazy('sec-password_change_done'), extra_context={'titulo':'Troca Senha', 'cabecalho':'Página de Troca de Senha', 'texto_btn': 'Troca senha'},), name='sec-password_change'),
     path('seguranca/password_change_done/', PasswordChangeDoneView.as_view(template_name='seguranca/password_change_done.html', ), name='sec-password_change_done'),
+    path('seguranca/terminaRegistro/<int:pk>/', views.MeuUpdateView.as_view(template_name='seguranca/form.html', success_url=reverse_lazy('sec-home'), model=User, fields=['first_name', 'last_name', 'email', ], extra_context={'titulo':'Registro de Usuário', 'cabecalho':'Complete seus dados', 'texto_btn': 'Atualiza'}, ), name='sec-completaDadosUsuario'),
 ]
