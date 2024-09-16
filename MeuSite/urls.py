@@ -19,6 +19,8 @@ from django.urls import path
 from django.urls import include
 from MeuSite import views
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+from django.urls.base import reverse_lazy
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,4 +31,6 @@ urlpatterns = [
     path('seguranca/registro/', views.registro, name='sec-registro'),
     path('seguranca/login/', LoginView.as_view(template_name='seguranca/login.html',), name='sec-login'),
     path('seguranca/profile/', views.paginaSecreta, name='sec-paginaSecreta'),
+    path('meulogout/', views.logout, name='sec-meulogout'),
+    path('logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home'),), name='sec-logout'),
 ]
