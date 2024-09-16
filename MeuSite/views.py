@@ -21,3 +21,6 @@ def registro(request):
         formulario = UserCreationForm()
     context = {'form': formulario, }
     return render(request, 'seguranca/registro.html', context)
+
+def paginaSecreta(request):
+		return render(request, 'seguranca/paginaSecreta.html')

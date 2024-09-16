@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from MeuSite import views
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,4 +27,6 @@ urlpatterns = [
     path('', views.home, name='homepage'),
     path('seguranca/', views.homeSec, name='sec-home'),
     path('seguranca/registro/', views.registro, name='sec-registro'),
+    path('seguranca/login/', LoginView.as_view(template_name='seguranca/login.html',), name='sec-login'),
+    path('seguranca/profile/', views.paginaSecreta, name='sec-paginaSecreta'),
 ]
