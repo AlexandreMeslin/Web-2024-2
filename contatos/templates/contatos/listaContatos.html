@@ -15,6 +15,7 @@
             <tr>
                 <td>{{ pessoa.nome }}</td><td>{{pessoa.idade }}</td><td>{{ pessoa.salario }}</td>
                 <td>
+                    <a href="{% url 'contatos:atualiza-contato' pk=pessoa.id %}">Atualizar</a>
                 </td>
            </tr>
         {% empty %}
