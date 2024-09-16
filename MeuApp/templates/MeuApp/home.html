@@ -1,10 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="{% static 'js/MeuApp/javascript.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/MeuApp/estilo.css' %}">
 </head>
 <body>
     <h1 class="container text-center">Home Page</h1>
+
+    <img src="{% static 'img/MeuApp/python.png' %}" id="idPython" alt="Logo do Python">
+
 	<form action="{% url 'MeuApp:segunda' %}">
 		<input type='submit' value='Outra página...' class="btn btn-success"/>
 	</form>
