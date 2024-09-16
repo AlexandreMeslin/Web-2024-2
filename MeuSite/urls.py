@@ -24,4 +24,6 @@ urlpatterns = [
     path('MeuApp/', include('MeuApp.urls')),
     path('contatos/', include('contatos.urls')),
     path('', views.home, name='homepage'),
+    path('seguranca/', views.homeSec, name='sec-home'),
+    path('seguranca/registro/', views.registro, name='sec-registro'),
 ]
